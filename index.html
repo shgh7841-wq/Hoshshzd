@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="شهزاد قنبری | آموزش هوش مصنوعی">
+<title>هوش مصنوعی باهوش | شهزاد قنبری</title>
+
+<style>
+:root {
+  --bg:#f3f8ff;
+  --card:#ffffff;
+  --text:#10264d;
+  --muted:#647795;
+  --blue:#075bff;
+  --cyan:#08b6ee;
+  --border:#dce8fa;
+}
+
+body.dark {
+  --bg:#071326;
+  --card:#10213b;
+  --text:#edf5ff;
+  --muted:#a6bad8;
+  --blue:#4d8dff;
+  --cyan:#22d3ee;
+  --border:#263d5e;
+}
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.9;
+  transition:.3s;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.container {
+  width:92%;
+  max-width:1200px;
+  margin:auto;
+}
+
+header {
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+
+nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  flex-wrap:wrap;
+}
+
+.logo {
+  font-size:19px;
+  font-weight:bold;
+  color:var(--blue);
+}
+
+.logo small {
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:normal;
+}
+
+.links {
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:13px;
+}
+
+.links a:hover { color:var(--blue); }
+
+button,.btn {
+  cursor:pointer;
+  border:none;
+  border-radius:12px;
+  padding:11px 18px;
+  font-family:inherit;
+  font-size:14px;
+}
+
+.theme-btn {
+  background:var(--bg);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.hero {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  align-items:center;
+  padding:55px 0;
+}
+
+.hero-image {
+  position:relative;
+  animation:appear 1s ease;
+}
+
+.hero-image img {
+  width:100%;
+  display:block;
+  border-radius:25px;
+  box-shadow:0 15px 40px #075bff20;
+}
+
+.image-placeholder {
+  min-height:300px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  border:2px dashed var(--border);
+  border-radius:25px;
+  background:var(--card);
+  padding:20px;
+}
+
+.robot {
+  font-size:100px;
+}
+
+.eyebrow {
+  color:var(--blue);
+  font-weight:bold;
+}
+
+h1 {
+  font-size:clamp(32px,5vw,55px);
+  line-height:1.5;
+  margin:12px 0;
+}
+
+.highlight { color:var(--blue); }
+
+p { color:var(--muted); }
+
+.btn-primary {
+  background:linear-gradient(110deg,var(--cyan),var(--blue));
+  color:white;
+  display:inline-block;
+  box-shadow:0 8px 22px #075bff30;
+}
+
+.btn-secondary {
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+  display:inline-block;
+}
+
+.buttons {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:25px;
+}
+
+.stat {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:12px;
+  text-align:center;
+}
+
+.stat strong {
+  display:block;
+  color:var(--blue);
+  font-size:20px;
+}
+
+.stat span {
+  font-size:11px;
+  color:var(--muted);
+}
+
+section { padding:35px 0; }
+
+.section-title {
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.section-title h2 {
+  margin-bottom:0;
+  font-size:29px;
+}
+
+.section-title p { margin-top:5px; }
+
+.services {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.service {
+  padding:22px;
+  text-align:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  transition:.3s;
+}
+
+.service:hover {
+  transform:translateY(-6px);
+  border-color:var(--blue);
+}
+
+.icon { font-size:35px; }
+
+.service h3 { margin:5px 0; }
+
+.service p {
+  font-size:13px;
+  margin-bottom:0;
+}
+
+.panels {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.panel {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 10px 35px #075bff0a;
+}
+
+.panel h2 { margin-top:0; }
+
+.field { margin:14px 0; }
+
+.field label {
+  display:block;
+  margin-bottom:5px;
+  font-size:13px;
+}
+
+input,select,textarea {
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+  font-family:inherit;
+  font-size:14px;
+}
+
+.full { width:100%; }
+
+.option {
+  display:block;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin:10px 0;
+  cursor:pointer;
+}
+
+.option input {
+  width:auto;
+  margin-left:8px;
+}
+
+.contact-item {
+  background:var(--bg);
+  border:1px solid var(--border);
+  padding:15px;
+  margin:12px 0;
+  border-radius:13px;
+  overflow-wrap:anywhere;
+}
+
+.contact-item strong {
+  display:block;
+  direction:ltr;
+  text-align:right;
+  color:var(--blue);
+}
+
+.reviews {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.review {
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:17px;
+}
+
+.stars { color:#f5a500; }
+
+footer {
+  background:#0b1b35;
+  color:white;
+  padding:25px 0;
+  margin-top:40px;
+  text-align:center;
+}
+
+footer p { color:#bdcde8; }
+
+.notice {
+  font-size:11px;
+  color:var(--muted);
+}
+
+@keyframes appear {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@media(max-width:750px) {
+  .hero { grid-template-columns:1fr; padding:30px 0; }
+  .hero-image { order:2; }
+  .hero-content { order:1; }
+  .services { grid-template-columns:repeat(2,1fr); }
+  .panels { grid-template-columns:1fr; }
+  .reviews { grid-template-columns:1fr; }
+  .links { gap:12px; font-size:12px; }
+  .logo { font-size:16px; }
+}
+
+@media(max-width:400px) {
+  .services { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+<nav>
+  <a href="#home" class="logo">
+    ✦ شهزاد قنبری
+    <small>مدرس و متخصص آموزش هوش مصنوعی</small>
+  </a>
+
+  <div class="links">
+    <a href="#home" data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a>
+    <a href="#services" data-fa="خدمات" data-en="Services">خدمات</a>
+    <a href="#signup" data-fa="ثبت‌نام" data-en="Register">ثبت‌نام</a>
+    <a href="#survey" data-fa="نظرسنجی" data-en="Survey">نظرسنجی</a>
+    <a href="#contact" data-fa="تماس" data-en="Contact">تماس</a>
+  </div>
+
+  <div>
+    <button class="theme-btn" id="language">EN</button>
+    <button class="theme-btn" id="theme">☀️ / 🌙</button>
+  </div>
+</nav>
+</div>
+</header>
+
+<main>
+
+<div class="container hero" id="home">
+
+  <div class="hero-image">
+
+    <!-- تصویر ربات را با نام robot-laptop.jpg کنار این فایل قرار بده -->
+
+    <img src="robot-laptop.jpg"
+         alt="ربات هوش مصنوعی در حال کار با لپ‌تاپ"
+         onerror="this.style.display='none';document.getElementById('placeholder').style.display='grid'">
+
+    <div class="image-placeholder" id="placeholder" style="display:none">
+      <div>
+        <div class="robot">🤖</div>
+        <h3>ربات هوش مصنوعی</h3>
+        <p>تصویر robot-laptop.jpg را در مخزن GitHub بارگذاری کن.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-content">
+    <span class="eyebrow"
+      data-fa="به دنیای آینده خوش آمدید"
+      data-en="Welcome to the future">به دنیای آینده خوش آمدید</span>
+
+    <h1 data-fa="هوش مصنوعی <span class='highlight'>باهوش</span>"
+        data-en="Smart <span class='highlight'>Artificial Intelligence</span>">
+      هوش مصنوعی <span class="highlight">باهوش</span>
+    </h1>
+
+    <h3 data-fa="آموزش، مشاوره و تولید محتوا با هوش مصنوعی"
+        data-en="AI Training, Consulting and Content Creation">
+      آموزش، مشاوره و تولید محتوا با هوش مصنوعی
+    </h3>
+
+    <p data-fa="من شهزاد قنبری هستم؛ مدرس و متخصص آموزش هوش مصنوعی. اینجا با ابزارها و روش‌های نوین هوش مصنوعی آشنا می‌شوید تا از آن‌ها در زندگی شخصی و حرفه‌ای خود استفاده کنید."
+       data-en="I am Shahzad Ghanbari, an AI trainer and specialist. Discover modern AI tools and learn how to use them in your personal and professional life.">
+      من شهزاد قنبری هستم؛ مدرس و متخصص آموزش هوش مصنوعی. اینجا با ابزارها و روش‌های نوین هوش مصنوعی آشنا می‌شوید تا از آن‌ها در زندگی شخصی و حرفه‌ای خود استفاده کنید.
+    </p>
+
+    <div class="buttons">
+      <a href="#signup" class="btn btn-primary"
+         data-fa="شروع کنید ←" data-en="Get Started ←">شروع کنید ←</a>
+
+      <a href="#services" class="btn btn-secondary"
+         data-fa="مشاهده خدمات" data-en="Explore Services">مشاهده خدمات</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong>AI</strong><span data-fa="یادگیری هوشمند" data-en="Smart Learning">یادگیری هوشمند</span></div>
+      <div class="stat"><strong>∞</strong><span data-fa="ایده‌های تازه" data-en="Fresh Ideas">ایده‌های تازه</span></div>
+      <div class="stat"><strong>24/7</strong><span data-fa="دنیای نوآوری" data-en="Innovation">دنیای نوآوری</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+<div class="container">
+  <div class="section-title">
+    <h2 data-fa="خدمات و مهارت‌ها" data-en="Services & Skills">خدمات و مهارت‌ها</h2>
+    <p data-fa="هوش مصنوعی؛ ابزاری برای خلاقیت و پیشرفت"
+       data-en="AI tools for creativity and progress">هوش مصنوعی؛ ابزاری برای خلاقیت و پیشرفت</p>
+  </div>
+
+  <div class="services">
+    <article class="service">
+      <div class="icon">🤖</div>
+      <h3 data-fa="هوش مصنوعی" data-en="Artificial Intelligence">هوش مصنوعی</h3>
+      <p data-fa="آشنایی با ابزارهای کاربردی" data-en="Practical AI tools">آشنایی با ابزارهای کاربردی</p>
+    </article>
+
+    <article class="service">
+      <div class="icon">🎨</div>
+      <h3 data-fa="تولید محتوا" data-en="Content Creation">تولید محتوا</h3>
+      <p data-fa="متن، تصویر و ویدئو" data-en="Text, image and video">متن، تصویر و ویدئو</p>
+    </article>
+
+    <article class="service">
+      <div class="icon">✍️</div>
+      <h3 data-fa="پرامپت‌نویسی" data-en="Prompt Engineering">پرامپت‌نویسی</h3>
+      <p data-fa="دریافت نتایج بهتر از هوش مصنوعی" data-en="Get better AI results">دریافت نتایج بهتر از هوش مصنوعی</p>
+    </article>
+
+    <article class="service">
+      <div class="icon">💻</div>
+      <h3 data-fa="طراحی وب" data-en="Web Design">طراحی وب</h3>
+      <p data-fa="ساخت سایت‌های مدرن" data-en="Modern website design">ساخت سایت‌های مدرن</p>
+    </article>
+
+    <article class="service">
+      <div class="icon">📊</div>
+      <h3 data-fa="تحلیل داده" data-en="Data Analysis">تحلیل داده</h3>
+      <p data-fa="تحلیل و تصمیم‌گیری هوشمند" data-en="Smart data analysis">تحلیل و تصمیم‌گیری هوشمند</p>
+    </article>
+
+    <article class="service">
+      <div class="icon">⚙️</div>
+      <h3 data-fa="ربات‌نویسی" data-en="Bot Development">ربات‌نویسی</h3>
+      <p data-fa="آشنایی با ربات‌ها و خودکارسازی" data-en="Bots and automation">آشنایی با ربات‌ها و خودکارسازی</p>
+    </article>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container panels">
+
+  <div class="panel" id="signup">
+    <h2 data-fa="ثبت‌نام اولیه" data-en="Pre-registration">ثبت‌نام اولیه</h2>
+    <p data-fa="برای دریافت اطلاعات دوره‌ها، فرم زیر را تکمیل کنید."
+       data-en="Fill in the form to receive course information.">
+       برای دریافت اطلاعات دوره‌ها، فرم زیر را تکمیل کنید.
+    </p>
+
+    <form id="registerForm">
+      <div class="field">
+        <label for="name" data-fa="نام و نام خانوادگی" data-en="Full Name">نام و نام خانوادگی</label>
+        <input id="name" required placeholder="نام شما">
+      </div>
+
+      <div class="field">
+        <label for="email" data-fa="ایمیل" data-en="Email">ایمیل</label>
+        <input id="email" type="email" required placeholder="name@example.com">
+      </div>
+
+      <div class="field">
+        <label for="interest" data-fa="موضوع مورد علاقه" data-en="Topic of Interest">موضوع مورد علاقه</label>
+        <select id="interest">
+          <option>هوش مصنوعی</option>
+          <option>تولید محتوا</option>
+          <option>پرامپت‌نویسی</option>
+          <option>طراحی وب</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary full" type="submit"
+        data-fa="ثبت اطلاعات" data-en="Submit">ثبت اطلاعات</button>
+    </form>
+
+    <p class="notice" data-fa="این فرم نمایشی است و اطلاعات را به سرور ارسال نمی‌کند."
+       data-en="Demo form: information is not sent to a server.">
+       این فرم نمایشی است و اطلاعات را به سرور ارسال نمی‌کند.
+    </p>
+  </div>
+
+  <div class="panel" id="survey">
+    <h2 data-fa="نظرسنجی شما" data-en="Your Feedback">نظرسنجی شما</h2>
+    <p data-fa="کدام موضوع برای شما جذاب‌تر است؟"
+       data-en="Which topic interests you most?">کدام موضوع برای شما جذاب‌تر است؟</p>
+
+    <form id="surveyForm">
+      <label class="option"><input type="radio" name="vote" value="آموزش هوش مصنوعی" required> آموزش هوش مصنوعی</label>
+      <label class="option"><input type="radio" name="vote" value="تولید محتوا"> تولید محتوا با AI</label>
+      <label class="option"><input type="radio" name="vote" value="پرامپت نویسی"> پرامپت‌نویسی حرفه‌ای</label>
+      <label class="option"><input type="radio" name="vote" value="ابزارها"> ابزارهای هوش مصنوعی</label>
+
+      <button class="btn btn-primary full" type="submit"
+        data-fa="ثبت نظر" data-en="Vote">ثبت نظر</button>
+    </form>
+
+    <p id="surveyResult" aria-live="polite"></p>
+
+    <p class="notice" data-fa="نتیجه این نظرسنجی فقط در مرورگر همین دستگاه ذخیره می‌شود."
+       data-en="Survey results are stored only in this browser.">
+       نتیجه این نظرسنجی فقط در مرورگر همین دستگاه ذخیره می‌شود.
+    </p>
+  </div>
+
+</div>
+</section>
+
+<section id="reviews">
+<div class="container">
+  <div class="section-title">
+    <h2 data-fa="دیدگاه بازدیدکنندگان" data-en="Visitor Feedback">دیدگاه بازدیدکنندگان</h2>
+    <p data-fa="نمونه دیدگاه برای نمایش ظاهر بخش نظرات"
+       data-en="Sample testimonials to demonstrate the design">نمونه دیدگاه برای نمایش ظاهر بخش نظرات</p>
+  </div>
+
+  <div class="reviews">
+    <article class="review">
+      <strong data-fa="سارا احمدی" data-en="Sara Ahmadi">سارا احمدی</strong>
+      <div class="stars">★★★★★</div>
+      <p data-fa="طراحی جذاب و دسترسی آسان به بخش‌های سایت."
+         data-en="Attractive design and easy navigation.">طراحی جذاب و دسترسی آسان به بخش‌های سایت.</p>
+    </article>
+
+    <article class="review">
+      <strong data-fa="علی محمدی" data-en="Ali Mohammadi">علی محمدی</strong>
+      <div class="stars">★★★★★</div>
+      <p data-fa="موضوعات هوش مصنوعی کاربردی و جالب هستند."
+         data-en="The AI topics are useful and interesting.">موضوعات هوش مصنوعی کاربردی و جالب هستند.</p>
+    </article>
+
+    <article class="review">
+      <strong data-fa="مریم رضایی" data-en="Maryam Rezaei">مریم رضایی</strong>
+      <div class="stars">★★★★★</div>
+      <p data-fa="ظاهر مدرن و رنگ‌بندی زیبای سایت."
+         data-en="Modern look and beautiful color palette.">ظاهر مدرن و رنگ‌بندی زیبای سایت.</p>
+    </article>
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+  <div class="panel">
+    <div class="section-title">
+      <h2 data-fa="تماس با من" data-en="Contact Me">تماس با من</h2>
+      <p data-fa="برای ارتباط و همکاری پیام بدهید."
+         data-en="Contact me for questions or collaboration.">برای ارتباط و همکاری پیام بدهید.</p>
+    </div>
+
+    <div class="contact-item">
+      ✉️ ایمیل
+      <strong><a href="mailto:shzdgnbr@gmail.com">shzdgnbr@gmail.com</a></strong>
+    </div>
+
+    <div class="contact-item">
+      ✈️ تلگرام
+      <strong><a href="https://t.me/shzd_qnbr" target="_blank" rel="noopener">@shzd_qnbr</a></strong>
+    </div>
+
+    <p style="text-align:center;font-size:22px;color:var(--blue)">
+      Shahzad Ghanbari
+    </p>
+    <p style="text-align:center">شهزاد قنبری | مدرس و متخصص آموزش هوش مصنوعی</p>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>شهزاد قنبری | هوش مصنوعی باهوش</strong>
+    <p>یادگیری امروز، ساختن آینده</p>
+    <p>© <span id="year"></span> تمامی حقوق محفوظ است.</p>
+  </div>
+</footer>
+
+<script>
+const themeButton = document.getElementById("theme");
+const languageButton = document.getElementById("language");
+
+themeButton.addEventListener("click", function() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+});
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
+
+let currentLanguage = "fa";
+
+languageButton.addEventListener("click", function() {
+  currentLanguage = currentLanguage === "fa" ? "en" : "fa";
+
+  document.documentElement.lang = currentLanguage;
+  document.documentElement.dir = currentLanguage === "fa" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-fa][data-en]").forEach(function(element) {
+    element.innerHTML = element.getAttribute("data-" + currentLanguage);
+  });
+
+  languageButton.textContent = currentLanguage === "fa" ? "EN" : "فا";
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  alert(currentLanguage === "fa"
+    ? "فرم تکمیل شد. برای ذخیره واقعی اطلاعات، باید سایت به سرویس ثبت‌نام متصل شود."
+    : "Form completed. Connect a registration service to save the information.");
+
+  this.reset();
+});
+
+document.getElementById("surveyForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const selected = new FormData(this).get("vote");
+
+  if (!selected) return;
+
+  let votes = JSON.parse(localStorage.getItem("aiVotes") || "{}");
+  votes[selected] = (votes[selected] || 0) + 1;
+
+  localStorage.setItem("aiVotes", JSON.stringify(votes));
+
+  document.getElementById("surveyResult").textContent =
+    currentLanguage === "fa"
+      ? "ممنون از شرکت در نظرسنجی!"
+      : "Thank you for your feedback!";
+});
+</script>
+
+</body>
+</html>
